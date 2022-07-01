@@ -93,3 +93,43 @@ fn main() {
     }
 }
 ```
+
+## generic types
+
+**But how is this practically useful?**
+
+3 things.
+
+- lists with many types
+- Nullable
+- Error Handling
+
+```rust
+struct Foo {
+    bar: Option<i32>
+}
+
+fn main() {
+    let foo = Foo {
+        bar: None
+    };
+
+    let foo2 = Foo {
+        bar: Some(2)
+    };
+
+    if foo.bar.is_some() {
+        let sum = foo.bar.unwrap() + 5;
+    }
+
+    foo.bar.unwrap_or(0);
+
+    foo.bar.unwrap_or_else(|| {
+        return 5;
+    });
+
+    let out = foo.bar.map(|x| {
+        return x + 5;
+    });
+}
+```
