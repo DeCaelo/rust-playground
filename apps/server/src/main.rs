@@ -1,45 +1,10 @@
-// enum RSEnum {
-//     Foo(i32),
-//     Bar(String),
-//     Baz(Vec<String>),
-//     Foo2(Option<i32>),
-// }
+use actix_web::{web, App, HttpResponse, HttpServer};
 
-enum Option<T> {
-    None,
-    Some(T),
-}
-
-fn main() {
-    // let a = vec![];
-    // let mut b = a;
-
-    // b.push(1);
-
-    // println!("{:?}", b);
-
-    // let foo = RSEnum::Foo(5);
-
-    // // pattern matching: wow
-    // if let RSEnum::Foo(value) = foo {}
-
-    // match foo {
-    //     RSEnum::Foo2(Some(value)) => {}
-    //     RSEnum::Foo2(None) => {}
-    //     RSEnum::Foo(value) => {}
-    //     _ => {}
-    // }
-
-    let foo = Some(5);
-
-    if let Some(value) = foo {}
-
-    match foo {
-        Some(value) => {}
-        None => {}
-    }
-
-    foo.map(|x| {});
-
-    foo.filter(|&x| x < 10);
+#[actix_web::main]
+async fn main() -> std::io::Result<()> {
+    println!("Listening http://localhost:8080");
+    HttpServer::new(|| App::new().route("/", web::get().to(HttpResponse::Ok)))
+        .bind(("127.0.0.1", 8080))?
+        .run()
+        .await
 }

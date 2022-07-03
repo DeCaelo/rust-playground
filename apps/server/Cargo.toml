@@ -2,3 +2,7 @@
 name = "rust-playground"
 version = "0.1.0"
 edition = "2021"
+
+[dependencies]
+actix = "0.13.0"
+actix-web = "4.0.1"
