@@ -170,3 +170,48 @@ fn main() {
     }
 }
 ```
+
+### Error Handling
+
+**Anyhow?**
+A nice library for writing great code with error handling is anyhow! Lets look at it
+
+```code
+cargo install anyhow
+```
+
+```rust
+use anyhow::{Result, anyhow, Context};
+
+fn error(throw: bool) -> Result<()> {
+    if throw {
+        return Err(anyhow!("this should nver be true));
+    }
+
+    std::fs::read(PathBuf::from("/foo)).context("hey nope")?;
+
+    return Ok(());
+}
+```
+
+### Test
+
+- test in file
+- One thing to be careful of is to what level private interfaces should be tested.
+
+```rust
+... // code ...
+
+#[cfg(test)]
+mod test {
+    #[test]
+    fn this_test() {
+        assert_eq!(5, 7);
+    }
+}
+```
+
+```code
+cargo test
+cargo test path/to/file.rs
+```
