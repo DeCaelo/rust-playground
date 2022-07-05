@@ -133,3 +133,40 @@ fn main() {
     });
 }
 ```
+
+### Lets implement the Option enum!
+
+```rust
+enum Option2<T> {
+    None,
+    Some(T)
+}
+
+impl<T> Option2<T> {
+    pub fn map(&self, f: fn(&T) -> T) -> Option2<T> {
+        return match self {
+            Option2::None => Option2::None,
+            Option2::Some(v) => Option2::Some(f(v)),
+        }
+    }
+
+    pub fn is_some(&self) -> bool {
+        return match self {
+            Option2::None => false,
+            Option2::Some(_) => true,
+        }
+    }
+}
+
+fn main() {
+    let opt = Some(5);
+    let opt2 = Option2::Some(5);
+
+    opt.map(|x| x + 5);
+    let opt2 = opt2.map(|x| x + 5);
+
+    if opt2.is_some() {
+
+    }
+}
+```
